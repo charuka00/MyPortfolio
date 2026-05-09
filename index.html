@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charuka Sandaruwan - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-950: #0a0f1e;
+            --navy-900: #0d1530;
+            --navy-800: #112045;
+            --navy-700: #1a3060;
+            --navy-600: #1e3a8a;
+            --navy-500: #1d4ed8;
+            --navy-400: #3b82f6;
+            --navy-300: #93c5fd;
+            --gold: #c9a84c;
+            --gold-light: #e2c97e;
+            --silver: #cbd5e1;
+        }
+
+        * { font-family: 'DM Sans', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .serif { font-family: 'Playfair Display', serif; }
+
+        body { background: var(--navy-950); color: #e2e8f0; }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--navy-600) 0%, var(--navy-500) 100%);
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 60%, #f5dfa0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            transform-origin: left;
+            transform: scaleX(0);
+            z-index: 1000;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--navy-700), rgba(201,168,76,0.4), var(--navy-700), transparent);
+            margin: 0;
+        }
+
+        .skill-bar {
+            background: linear-gradient(90deg, var(--navy-600) 0%, var(--gold) 100%);
+            height: 6px;
+            border-radius: 3px;
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-bar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+        }
+
+        .tech-stack {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            background: rgba(29, 78, 216, 0.25);
+            color: var(--navy-300);
+            border: 1px solid rgba(59,130,246,0.3);
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin: 0.1rem;
+        }
+
+        nav {
+            background: rgba(10, 15, 30, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(201,168,76,0.15);
+        }
+
+        .card {
+            background: rgba(13, 21, 48, 0.8);
+            border: 1px solid rgba(59,130,246,0.12);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: rgba(201,168,76,0.3);
+            box-shadow: 0 0 30px rgba(29,78,216,0.15), 0 0 0 1px rgba(201,168,76,0.1);
+        }
+
+        .hero-mesh {
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 30%, rgba(29,78,216,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 70%, rgba(17,32,69,0.8) 0%, transparent 60%),
+                radial-gradient(ellipse 100% 100% at 50% 0%, rgba(201,168,76,0.05) 0%, transparent 50%);
+        }
+
+        .grid-pattern {
+            background-image: linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .section-light { background: rgba(13, 21, 48, 0.5); }
+        .section-dark { background: var(--navy-950); }
+
+        .tag-blue {
+            background: rgba(29,78,216,0.2);
+            color: var(--navy-300);
+            border: 1px solid rgba(59,130,246,0.25);
+        }
+        .tag-gold {
+            background: rgba(201,168,76,0.15);
+            color: var(--gold-light);
+            border: 1px solid rgba(201,168,76,0.25);
+        }
+        .tag-green {
+            background: rgba(16,185,129,0.15);
+            color: #6ee7b7;
+            border: 1px solid rgba(16,185,129,0.25);
+        }
+
+        .timeline-dot {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            box-shadow: 0 0 12px rgba(201,168,76,0.5);
+            flex-shrink: 0;
+        }
+
+        .accent-bar {
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            border-radius: 2px;
+        }
+
+        .nav-link {
+            color: var(--silver);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--gold-light); }
+
+        .initials-badge {
+            background: linear-gradient(135deg, var(--navy-600), var(--navy-500));
+            border: 2px solid rgba(201,168,76,0.4);
+            box-shadow: 0 0 40px rgba(29,78,216,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, var(--navy-300) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <nav class="sticky top-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold gradient-text serif tracking-wide">Charuka Sandaruwan</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#introduction" class="nav-link">Introduction</a>
+                    <a href="#reflection" class="nav-link">Reflection</a>
+                    <a href="#career-plan" class="nav-link">Career Plan</a>
+                    <a href="#cv" class="nav-link">CV</a>
+                    <a href="#certificate" class="nav-link">Certificates</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden" style="background: var(--navy-950);">
+        <div class="absolute inset-0 hero-mesh"></div>
+        <div class="absolute inset-0 grid-pattern opacity-60"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(29,78,216,0.15), transparent 70%);"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%);"></div>
+
+        <div class="text-center z-10 max-w-4xl mx-auto px-6 mt-16">
+            <div class="w-44 h-44 mx-auto mb-8 rounded-full initials-badge flex items-center justify-center text-5xl font-bold text-white serif shadow-2xl">
+                CS
+            </div>
+            <p class="text-xs tracking-[0.3em] text-blue-400 uppercase mb-4 font-medium">Software Engineer · Full-Stack Developer</p>
+            <h1 class="text-6xl md:text-7xl font-bold mb-6 serif leading-tight" style="color: #f1f5f9;">
+                Charuka<br><span class="gradient-text">Sandaruwan</span>
+            </h1>
+            <p class="text-base mb-10 max-w-2xl mx-auto leading-relaxed" style="color: var(--silver); opacity: 0.8;">
+                A passionate full-stack developer and software engineering student with hands-on industry experience, specializing in building scalable, modern web and mobile applications with a focus on premium aesthetics, clean architecture, and impactful user experiences.
+            </p>
+            <div class="flex justify-center gap-16">
+                <div class="text-center">
+                    <div class="stat-value">Final</div>
+                    <div class="text-xs tracking-widest uppercase mt-1" style="color: var(--navy-300);">Year Student</div>
+                </div>
+                <div class="w-px" style="background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.4), transparent);"></div>
+                <div class="text-center">
+                    <div class="stat-value">1Y+</div>
+                    <div class="text-xs tracking-widest uppercase mt-1" style="color: var(--navy-300);">Experience</div>
+                </div>
+                <div class="w-px" style="background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.4), transparent);"></div>
+                <div class="text-center">
+                    <div class="stat-value">10+</div>
+                    <div class="text-xs tracking-widest uppercase mt-1" style="color: var(--navy-300);">Projects</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section id="introduction" class="py-24 section-light">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-xs tracking-[0.3em] uppercase mb-3" style="color: var(--gold);">Who I Am</p>
+                <h2 class="text-5xl font-bold serif mb-4" style="color: #f1f5f9;">About <span class="gradient-text">Me</span></h2>
+                <p class="text-base max-w-2xl mx-auto" style="color: var(--silver); opacity: 0.7;">
+                    Passionate about creating modern, robust, and visually stunning software solutions.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start mb-14">
+                <div class="space-y-5">
+                    <div class="card p-8 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="accent-bar h-8"></div>
+                            <h3 class="text-xl font-bold serif gradient-text">My Journey</h3>
+                        </div>
+                        <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.85;">
+                            I am a dedicated software engineering student and full-stack developer with real-world industry experience, having contributed as both a Software Development Intern and now an Associate Software Engineer. My journey is defined by a relentless pursuit of technical excellence, working across Flutter mobile development, React-based web applications, and robust backend systems.
+                        </p>
+                    </div>
+                    <div class="card p-8 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="accent-bar h-8"></div>
+                            <h3 class="text-xl font-bold serif gradient-text">What Drives Me</h3>
+                        </div>
+                        <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.85;">
+                            I am driven by the challenge of solving real-world problems through innovative technology. I believe in the power of design to elevate user experiences. My goal is to build software that not only functions flawlessly but also provides a premium, intuitive experience—software that people genuinely enjoy using.
+                        </p>
+                    </div>
+                    <div class="card p-8 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="accent-bar h-8"></div>
+                            <h3 class="text-xl font-bold serif gradient-text">Career Objective</h3>
+                        </div>
+                        <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.85;">
+                            A motivated and detail-oriented full-stack developer with hands-on industry experience in building and delivering real-world software platforms. Seeking to grow within a dynamic engineering environment to apply expertise in Flutter, React, and scalable backend systems.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-xs tracking-[0.3em] uppercase mb-6" style="color: var(--gold);">Expertise</p>
+                    <h3 class="text-3xl font-bold serif mb-8" style="color: #f1f5f9;">Core Competencies</h3>
+                    <div class="space-y-5">
+                        <div class="card flex items-start space-x-4 p-5 rounded-xl">
+                            <div class="w-11 h-11 shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(29,78,216,0.25); border: 1px solid rgba(59,130,246,0.2);">💻</div>
+                            <div>
+                                <h4 class="font-semibold text-sm" style="color: #f1f5f9;">Frontend Excellence</h4>
+                                <p class="text-xs mt-0.5" style="color: var(--navy-300);">JavaScript, React, Html, Next.js, Tailwind CSS</p>
+                            </div>
+                        </div>
+                        <div class="card flex items-start space-x-4 p-5 rounded-xl">
+                            <div class="w-11 h-11 shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(29,78,216,0.25); border: 1px solid rgba(59,130,246,0.2);">⚙️</div>
+                            <div>
+                                <h4 class="font-semibold text-sm" style="color: #f1f5f9;">Backend Systems</h4>
+                                <p class="text-xs mt-0.5" style="color: var(--navy-300);">Node.js, Microservices, REST API Design</p>
+                            </div>
+                        </div>
+                        <div class="card flex items-start space-x-4 p-5 rounded-xl">
+                            <div class="w-11 h-11 shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(29,78,216,0.25); border: 1px solid rgba(59,130,246,0.2);">🎨</div>
+                            <div>
+                                <h4 class="font-semibold text-sm" style="color: #f1f5f9;">UI/UX Design</h4>
+                                <p class="text-xs mt-0.5" style="color: var(--navy-300);">Design Systems, Premium Aesthetics, Typography</p>
+                            </div>
+                        </div>
+                        <div class="card flex items-start space-x-4 p-5 rounded-xl">
+                            <div class="w-11 h-11 shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(29,78,216,0.25); border: 1px solid rgba(59,130,246,0.2);">🏗️</div>
+                            <div>
+                                <h4 class="font-semibold text-sm" style="color: #f1f5f9;">Software Architecture</h4>
+                                <p class="text-xs mt-0.5" style="color: var(--navy-300);">Scalable Solutions, Clean Code, Performance Tuning</p>
+                            </div>
+                        </div>
+                        <div class="card flex items-start space-x-4 p-5 rounded-xl">
+                            <div class="w-11 h-11 shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(29,78,216,0.25); border: 1px solid rgba(59,130,246,0.2);">🛠️</div>
+                            <div>
+                                <h4 class="font-semibold text-sm" style="color: #f1f5f9;">Development Tools</h4>
+                                <p class="text-xs mt-0.5" style="color: var(--navy-300);">Git/GitHub, Jira, VS Code, Postman, Figma</p>
+                            </div>
+                        </div>
+                        <div class="card flex items-start space-x-4 p-5 rounded-xl">
+                            <div class="w-11 h-11 shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(29,78,216,0.25); border: 1px solid rgba(59,130,246,0.2);">🤝</div>
+                            <div>
+                                <h4 class="font-semibold text-sm" style="color: #f1f5f9;">Professional Skills</h4>
+                                <p class="text-xs mt-0.5" style="color: var(--navy-300);">Team Collaboration, Agile, Client Communication</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div>
+                <p class="text-xs tracking-[0.3em] uppercase mb-3 text-center" style="color: var(--gold);">Work History</p>
+                <h3 class="text-3xl font-bold serif text-center mb-10" style="color: #f1f5f9;">Professional Experience</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card p-8 rounded-2xl relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full" style="background: linear-gradient(to bottom, var(--navy-500), transparent);"></div>
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">💼</div>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full tag-blue">6 months</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-1" style="color: #f1f5f9;">Software Development Intern</h4>
+                        <p class="text-sm font-semibold mb-1" style="color: var(--gold);">Ceylinco Life Insurance</p>
+                        <p class="text-xs mb-1" style="color: var(--navy-300);">Colombo · On-site · Internship</p>
+                        <p class="text-xs mb-5" style="color: rgba(148,163,184,0.6);">Oct 2025 – Mar 2026 · 6 mos</p>
+                        <p class="text-sm leading-relaxed mb-5" style="color: var(--silver); opacity: 0.75;">
+                            Gained hands-on experience in software development, contributing to application design, coding, and testing projects. Collaborated with development teams while learning programming languages, debugging techniques, and agile development methodologies.
+                        </p>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="tech-stack">C#</span>
+                            <span class="tech-stack">My Sql</span>
+                            <span class="tech-stack">React</span>
+                            <span class="tech-stack">Amazon S3</span>
+                        </div>
+                    </div>
+
+                    <div class="card p-8 rounded-2xl relative overflow-hidden" style="border-color: rgba(201,168,76,0.2);">
+                        <div class="absolute top-0 left-0 w-1 h-full" style="background: linear-gradient(to bottom, var(--gold), transparent);"></div>
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);">🚀</div>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full tag-green">Present · 2 months</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-1" style="color: #f1f5f9;">Associate Software Engineer</h4>
+                        <p class="text-sm font-semibold mb-1" style="color: var(--gold);">NeonStack Software Solutions</p>
+                        <p class="text-xs mb-1" style="color: var(--navy-300);">Kelaniya · On-site · Contract</p>
+                        <p class="text-xs mb-5" style="color: rgba(148,163,184,0.6);">Mar 2026 – Present · 2 mos</p>
+                        <p class="text-sm leading-relaxed mb-5" style="color: var(--silver); opacity: 0.75;">
+                            Skilled in building scalable web applications using Next.js, Express.js, and MariaDB. Proficient in database management and creating responsive UIs with Tailwind CSS. Experienced in full-stack development, API integration, and delivering optimized, user-focused solutions.
+                        </p>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="tech-stack">Next.js</span>
+                            <span class="tech-stack">Express.js</span>
+                            <span class="tech-stack">MariaDB</span>
+                            <span class="tech-stack">Tailwind CSS</span>
+                            <span class="tech-stack">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- REFLECTION -->
+    <section id="reflection" class="py-24 section-dark">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-xs tracking-[0.3em] uppercase mb-3" style="color: var(--gold);">Growth & Learning</p>
+                <h2 class="text-5xl font-bold serif mb-4" style="color: #f1f5f9;">Reflective <span class="gradient-text">Journal</span></h2>
+                <p class="text-base max-w-2xl mx-auto" style="color: var(--silver); opacity: 0.7;">
+                    My Transformative Learning Journey in Professional Practices in Work (PPW)
+                </p>
+            </div>
+
+            <div class="card p-8 rounded-2xl mb-5">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-13 h-13 w-12 h-12 rounded-xl flex items-center justify-center text-xl" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">✉️</div>
+                    <div>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full tag-blue">Week 3–4</span>
+                        <h3 class="text-lg font-bold mt-1" style="color: #f1f5f9;">Professional Communication & Writing</h3>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.8;">
+                        Explored the foundations of professional communication: formal emails, memos, and structured business writing. Learned how to tailor tone for different audiences, ensuring clarity and conciseness in workplace correspondence.
+                    </p>
+                    <div class="p-5 rounded-xl" style="background: rgba(29,78,216,0.1); border: 1px solid rgba(59,130,246,0.15);">
+                        <h4 class="font-semibold text-xs mb-3 tracking-wider uppercase" style="color: var(--gold);">Key Takeaways</h4>
+                        <ul class="space-y-1.5 text-xs" style="color: var(--navy-300);">
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Mastered formal email and memo structure</li>
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Learned audience-aware writing techniques</li>
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Applied professional tone in stakeholder updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-8 rounded-2xl mb-10">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">🎤</div>
+                    <div>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full tag-blue">Week 5–6</span>
+                        <h3 class="text-lg font-bold mt-1" style="color: #f1f5f9;">Presentation Skills & Public Speaking</h3>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.8;">
+                        Focused on the art of presenting ideas clearly. Studied presentation structures from opening to close, and practiced signposting language to transform technical demos into impactful sessions.
+                    </p>
+                    <div class="p-5 rounded-xl" style="background: rgba(29,78,216,0.1); border: 1px solid rgba(59,130,246,0.15);">
+                        <h4 class="font-semibold text-xs mb-3 tracking-wider uppercase" style="color: var(--gold);">Key Takeaways</h4>
+                        <ul class="space-y-1.5 text-xs" style="color: var(--navy-300);">
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Structured presentations with clear intent</li>
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Improved confidence in technical demos</li>
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Learned to handle Q&A professionally</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+                        <div class="card p-8 rounded-2xl mb-5">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-13 h-13 w-12 h-12 rounded-xl flex items-center justify-center text-xl" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">✉️</div>
+                    <div>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full tag-blue">Week 7–8</span>
+                        <h3 class="text-lg font-bold mt-1" style="color: #f1f5f9;">Report Writing & Research Methods</h3>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.8;">
+                        Weeks 7 and 8 introduced me to structured report writing, academic referencing, and research methodology. I explored how to gather, verify, and present information objectively critical skills when documenting technical decisions, writing project proposals, or producing handover documentation. Applying the Harvard referencing system deepened my appreciation for crediting sources correctly and maintaining academic integrity.
+                    </p>
+                    <div class="p-5 rounded-xl" style="background: rgba(29,78,216,0.1); border: 1px solid rgba(59,130,246,0.15);">
+                        <h4 class="font-semibold text-xs mb-3 tracking-wider uppercase" style="color: var(--gold);">Key Takeaways</h4>
+                        <ul class="space-y-1.5 text-xs" style="color: var(--navy-300);">
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Learned structured report and documentation writing</li>
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Applied Harvard referencing to academic work</li>
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Improved technical documentation for Buildora modules</li>
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Developed objective, evidence-based analysis skills</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+                        <div class="card p-8 rounded-2xl mb-5">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-13 h-13 w-12 h-12 rounded-xl flex items-center justify-center text-xl" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">✉️</div>
+                    <div>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full tag-blue">Week 9–14</span>
+                        <h3 class="text-lg font-bold mt-1" style="color: #f1f5f9;">Career Strategy, Ethics & Professional Identity</h3>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.8;">
+                        The final stretch of the PPW course brought everything together career planning, professional ethics, personal branding, and the responsibilities of a software engineer in society. I developed my career development plan, reflected on my internship journey at Fentons IT, and created a clear roadmap for growth from Associate Engineer to Technical Lead. Understanding the ethical dimensions of software development has deeply influenced how I write code, make design decisions, and communicate with clients.
+                    </p>
+                    <div class="p-5 rounded-xl" style="background: rgba(29,78,216,0.1); border: 1px solid rgba(59,130,246,0.15);">
+                        <h4 class="font-semibold text-xs mb-3 tracking-wider uppercase" style="color: var(--gold);">Key Takeaways</h4>
+                        <ul class="space-y-1.5 text-xs" style="color: var(--navy-300);">
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Built a comprehensive career development plan</li>
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Understood ethical responsibilities in tech</li>
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Developed personal brand and professional identity</li>
+                            <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Applied principles to environment-based config systems in Buildora</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-5 mb-10">
+                <div class="card p-6 rounded-xl text-center">
+                    <div class="text-3xl mb-3">🎯</div>
+                    <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Holistic Professional</h4>
+                    <p class="text-xs" style="color: var(--navy-300);">Balanced technical excellence with soft skills</p>
+                </div>
+                <div class="card p-6 rounded-xl text-center">
+                    <div class="text-3xl mb-3">🤝</div>
+                    <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Effective Communicator</h4>
+                    <p class="text-xs" style="color: var(--navy-300);">Translate complex technical concepts into business value</p>
+                </div>
+                <div class="card p-6 rounded-xl text-center">
+                    <div class="text-3xl mb-3">🚀</div>
+                    <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Lifelong Learner</h4>
+                    <p class="text-xs" style="color: var(--navy-300);">Commitment to continuous professional development</p>
+                </div>
+                    <div class="card p-6 rounded-xl text-center">
+                    <div class="text-3xl mb-3">⚖️</div>
+                    <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Ethical Leader</h4>
+                    <p class="text-xs" style="color: var(--navy-300);">Consider societal impact and ethics in every technical decision</p>
+                </div>
+                    <div class="card p-6 rounded-xl text-center">
+                    <div class="text-3xl mb-3">🌐</div>
+                    <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Strategic Networker</h4>
+                    <p class="text-xs" style="color: var(--navy-300);">Build meaningful professional relationships for mutual growth</p>
+                </div>
+                                <div class="card p-6 rounded-xl text-center">
+                    <div class="text-3xl mb-3">💡</div>
+                    <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Innovation Catalyst</h4>
+                    <p class="text-xs" style="color: var(--navy-300);">Bridge technology and business needs to create meaningful solutions</p>
+                </div>
+                
+            </div>
+
+            <div class="card p-8 rounded-2xl" style="border-color: rgba(201,168,76,0.2);">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="accent-bar h-8"></div>
+                    <h3 class="text-2xl font-bold serif gradient-text">Personal Transformation</h3>
+                </div>
+                <p class="text-sm leading-relaxed mb-4" style="color: var(--silver); opacity: 0.8;">
+                    The PPW course has fundamentally changed how I approach my professional life. Before this course, I focused primarily on technical skills and coding challenges. Now, I understand that successful software engineers must also be effective communicators and ethical decision-makers.
+                </p>
+                <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.8;">
+                    Looking ahead, I plan to continue applying these principles throughout my career. The foundation of professional practices I've developed will serve as a guide for building a successful and impactful career in software engineering.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CAREER PLAN -->
+<!-- CAREER PLAN -->
+    <section id="career-plan" class="py-24 section-light">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-xs tracking-[0.3em] uppercase mb-3" style="color: var(--gold);">Looking Ahead</p>
+                <h2 class="text-5xl font-bold serif mb-4" style="color: #f1f5f9;">Career Development <span class="gradient-text">Plan</span></h2>
+                <p class="text-base max-w-2xl mx-auto" style="color: var(--silver); opacity: 0.7;">
+                    Strategic roadmap for professional growth and long-term success in software engineering.
+                </p>
+            </div>
+
+            <!-- Career Vision & Mission -->
+            <div class="card p-8 rounded-2xl mb-6" style="border-color: rgba(201,168,76,0.2);">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="accent-bar h-8"></div>
+                    <h3 class="text-2xl font-bold serif gradient-text">Career Vision & Mission</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-sm font-bold mb-3 tracking-wider uppercase" style="color: var(--gold);">Vision Statement</h4>
+                        <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.8;">
+                            To become a recognized leader in software engineering who bridges innovative technology with meaningful business solutions, contributing to digital transformation while maintaining ethical standards and fostering inclusive development practices.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold mb-3 tracking-wider uppercase" style="color: var(--gold);">Mission Statement</h4>
+                        <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.8;">
+                            To leverage my technical expertise and professional skills to create impactful software solutions, mentor emerging developers, and contribute to the advancement of the software engineering field through continuous learning, ethical practice, and collaborative leadership.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Immediate Goals -->
+            <div class="card p-8 rounded-2xl mb-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">🎯</div>
+                    <div>
+                        <h3 class="text-xl font-bold serif gradient-text">Immediate Goals</h3>
+                        <p class="text-xs" style="color: var(--navy-300);">Next 6 Months (2026)</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xs font-bold mb-4 tracking-wider uppercase" style="color: var(--gold);">Academic & Professional Completion</h4>
+                        <ul class="space-y-3 text-sm" style="color: var(--silver); opacity: 0.8;">
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Graduate with B.Sc. (Hons) in IT in 2026</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Successfully defend final year research project</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Transition to a full-time permanent role at Fentons Information Technology</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Complete and deploy 2 additional portfolio projects</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold mb-4 tracking-wider uppercase" style="color: var(--gold);">Skill Enhancement & Certification</h4>
+                        <ul class="space-y-3 text-sm" style="color: var(--silver); opacity: 0.8;">
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> AWS Developer Associate Certification</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Advanced TypeScript proficiency</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Contribute to 3 open-source projects</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Start a technical blog with 10 articles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Short-term Goals -->
+            <div class="card p-8 rounded-2xl mb-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">🚀</div>
+                    <div>
+                        <h3 class="text-xl font-bold serif gradient-text">Short-term Goals</h3>
+                        <p class="text-xs" style="color: var(--navy-300);">1-2 Years (2026-2028)</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xs font-bold mb-4 tracking-wider uppercase" style="color: var(--gold);">Professional Development</h4>
+                        <ul class="space-y-3 text-sm" style="color: var(--silver); opacity: 0.8;">
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Achieve Senior Developer role within 18 months</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Lead 2-3 significant projects end-to-end</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Mentor 2-3 junior developers</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Achieve 15-20% annual salary growth</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold mb-4 tracking-wider uppercase" style="color: var(--gold);">Technical Mastery</h4>
+                        <ul class="space-y-3 text-sm" style="color: var(--silver); opacity: 0.8;">
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Master microservices architecture</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Become proficient in DevOps practices</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Specialize in AI/ML integration</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Present at 2-3 tech conferences</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medium-term Goals -->
+            <div class="card p-8 rounded-2xl mb-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">💼</div>
+                    <div>
+                        <h3 class="text-xl font-bold serif gradient-text">Medium-term Goals</h3>
+                        <p class="text-xs" style="color: var(--navy-300);">3-5 Years (2028-2031)</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xs font-bold mb-4 tracking-wider uppercase" style="color: var(--gold);">Leadership & Management</h4>
+                        <ul class="space-y-3 text-sm" style="color: var(--silver); opacity: 0.8;">
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Transition to Technical Lead or Engineering Manager</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Lead cross-functional teams of 8-10 people</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Drive architectural decisions for major systems</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Establish mentorship programs within organization</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold mb-4 tracking-wider uppercase" style="color: var(--gold);">Industry Recognition</h4>
+                        <ul class="space-y-3 text-sm" style="color: var(--silver); opacity: 0.8;">
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Become recognized thought leader in full-stack development</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Publish technical articles in major publications</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Contribute to open-source projects with 1000+ stars</li>
+                            <li class="flex items-start gap-3"><span style="color: var(--gold);">→</span> Build personal brand with 10,000+ followers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Long-term Vision -->
+            <div class="card p-8 rounded-2xl" style="border-color: rgba(201,168,76,0.2);">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25);">👑</div>
+                    <div>
+                        <h3 class="text-xl font-bold serif gradient-text">Long-term Vision</h3>
+                        <p class="text-xs" style="color: var(--navy-300);">5-10 Years & Beyond (2031+)</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-5 text-center">
+                    <div class="p-5 rounded-xl" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.1);">
+                        <div class="text-3xl mb-3">🏢</div>
+                        <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Executive Leadership</h4>
+                        <p class="text-xs" style="color: var(--navy-300);">CTO, VP of Engineering, or Principal Engineer at a major tech company</p>
+                    </div>
+                    <div class="p-5 rounded-xl" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.1);">
+                        <div class="text-3xl mb-3">🚀</div>
+                        <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Innovation & Entrepreneurship</h4>
+                        <p class="text-xs" style="color: var(--navy-300);">Launch tech startup or lead major product development initiatives</p>
+                    </div>
+                    <div class="p-5 rounded-xl" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.1);">
+                        <div class="text-3xl mb-3">🌟</div>
+                        <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Industry Impact</h4>
+                        <p class="text-xs" style="color: var(--navy-300);">Thought leadership, speaking at major conferences, and shaping industry standards</p>
+                    </div>
+                    <div class="p-5 rounded-xl" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.1);">
+                        <div class="text-3xl mb-3">📚</div>
+                        <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Knowledge Sharing</h4>
+                        <p class="text-xs" style="color: var(--navy-300);">Author technical books, create online courses, and contribute to education</p>
+                    </div>
+                    <div class="p-5 rounded-xl" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.1);">
+                        <div class="text-3xl mb-3">🤝</div>
+                        <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Community Building</h4>
+                        <p class="text-xs" style="color: var(--navy-300);">Establish tech communities, support diversity initiatives, and mentor next generation</p>
+                    </div>
+                    <div class="p-5 rounded-xl" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.1);">
+                        <div class="text-3xl mb-3">🌍</div>
+                        <h4 class="font-semibold text-sm mb-1" style="color: #f1f5f9;">Global Impact</h4>
+                        <p class="text-xs" style="color: var(--navy-300);">Contribute to technology solutions that address global challenges and improve lives</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CV -->
+    <!-- CV -->
+    <section id="cv" class="py-24 section-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-xs tracking-[0.3em] uppercase mb-3" style="color: var(--gold);">Experience & Skills</p>
+                <h2 class="text-5xl font-bold serif mb-4" style="color: #f1f5f9;">Curriculum <span class="gradient-text">Vitae</span></h2>
+                <p class="text-base max-w-2xl mx-auto" style="color: var(--silver); opacity: 0.7;">
+                    Comprehensive overview of professional experience, education, and technical expertise.
+                </p>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="max-w-6xl mx-auto mb-8">
+                <div class="card p-8 rounded-2xl flex flex-col md:flex-row items-center md:items-start gap-6" style="border-color: rgba(201,168,76,0.2);">
+                    <div class="w-20 h-20 shrink-0 rounded-full initials-badge flex items-center justify-center text-white text-2xl font-bold serif">CS</div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-2xl font-bold serif gradient-text">Charuka Sandaruwan</h3>
+                        <p class="text-sm mt-1" style="color: var(--navy-300);">Associate Software Engineer | Full-Stack Developer</p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-5 mt-3 text-xs" style="color: rgba(148,163,184,0.7);">
+                            <span class="flex items-center gap-1.5">📧 charukasan146@gmail.com</span>
+                            <span class="flex items-center gap-1.5">📱 +94 78 438 3227</span>
+                            <a href="https://www.linkedin.com/in/charuka-sandaruwan-264a73286/" target="_blank" class="flex items-center gap-1.5 transition-colors" style="color: rgba(148,163,184,0.7);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(148,163,184,0.7)'">💼 LinkedIn Profile</a>
+                            <a href="https://github.com/charuka00" target="_blank" class="flex items-center gap-1.5 transition-colors" style="color: rgba(148,163,184,0.7);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(148,163,184,0.7)'">💻 GitHub Portfolio</a>
+                        </div>
+                    </div>
+                    <div class="text-center shrink-0">
+                        <div class="text-3xl font-bold serif gradient-text">2026</div>
+                        <div class="text-xs mt-1" style="color: var(--navy-300);">Graduate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Career Objective -->
+            <div class="max-w-6xl mx-auto mb-8">
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="accent-bar h-8"></div>
+                        <h4 class="text-xl font-bold serif gradient-text">Career Objective</h4>
+                    </div>
+                    <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.85;">
+                        Motivated and detail-oriented full-stack developer with hands-on industry experience building and delivering real-world software platforms. Seeking a full-time role to apply technical skills and problem-solving abilities gained through professional work at Fentons Information Technology. Committed to continuous learning, collaboration, and delivering clean, efficient, high-quality code in fast-paced environments.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main two-column layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+                <!-- Left: Experience + Projects + Education + Research -->
+                <div class="lg:col-span-2 space-y-8">
+
+                    <!-- Professional Experience -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-8 pb-4" style="border-bottom: 1px solid rgba(59,130,246,0.1);">
+                            <div class="accent-bar h-7"></div>
+                            <h3 class="text-xl font-bold serif gradient-text">Professional Experience</h3>
+                        </div>
+                        <div class="space-y-8">
+
+                            <!-- Role 1 -->
+                            <div class="relative pl-6" style="border-left: 2px solid rgba(201,168,76,0.5);">
+                                <div class="flex items-start justify-between flex-wrap gap-2 mb-1">
+                                    <h4 class="font-bold" style="color: #f1f5f9;">Associate Software Engineer</h4>
+                                    <span class="text-xs font-semibold px-3 py-1 rounded-full tag-green">Aug 2025 – Present</span>
+                                </div>
+                                <p class="text-sm font-semibold mb-1" style="color: var(--gold);">Fentons Information Technology</p>
+                                <p class="text-xs mb-3" style="color: rgba(148,163,184,0.5);">75 Piyadasa Sirisena Mawatha, Colombo 01000 · On-site · Contract</p>
+                                <p class="text-sm leading-relaxed mb-4" style="color: var(--silver); opacity: 0.75;">
+                                    Building scalable web applications using Next.js, Express.js, and MariaDB. Proficient in database management with HeidiSQL and DBeaver, creating responsive UIs with Tailwind CSS. Experienced in full-stack development, API integration, and delivering optimized, user-focused solutions.
+                                </p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="tech-stack">Next.js</span>
+                                    <span class="tech-stack">Express.js</span>
+                                    <span class="tech-stack">MariaDB</span>
+                                    <span class="tech-stack">Tailwind CSS</span>
+                                    <span class="tech-stack">AWS</span>
+                                    <span class="tech-stack">Amazon S3</span>
+                                    <span class="tech-stack">DBeaver</span>
+                                </div>
+                            </div>
+
+                            <!-- Role 2 -->
+                            <div class="relative pl-6" style="border-left: 2px solid rgba(59,130,246,0.3);">
+                                <div class="flex items-start justify-between flex-wrap gap-2 mb-1">
+                                    <h4 class="font-bold" style="color: #f1f5f9;">Software Development Intern</h4>
+                                    <span class="text-xs font-semibold px-3 py-1 rounded-full tag-blue">Dec 2024 – Jul 2025</span>
+                                </div>
+                                <p class="text-sm font-semibold mb-1" style="color: var(--gold);">Fentons Information Technology</p>
+                                <p class="text-xs mb-3" style="color: rgba(148,163,184,0.5);">75 Piyadasa Sirisena Mawatha, Colombo 01000 · On-site · Internship · 8 mos</p>
+                                <p class="text-sm leading-relaxed mb-4" style="color: var(--silver); opacity: 0.75;">
+                                    Gained hands-on experience in software development, contributing to application design, coding, and testing projects. Collaborated with development teams while learning programming languages, debugging techniques, and agile development methodologies.
+                                </p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="tech-stack">PHP</span>
+                                    <span class="tech-stack">PHP Frameworks</span>
+                                    <span class="tech-stack">MariaDB</span>
+                                    <span class="tech-stack">DBeaver</span>
+                                    <span class="tech-stack">AWS</span>
+                                    <span class="tech-stack">Amazon S3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Projects -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-8 pb-4" style="border-bottom: 1px solid rgba(59,130,246,0.1);">
+                            <div class="accent-bar h-7"></div>
+                            <h3 class="text-xl font-bold serif gradient-text">Key Projects</h3>
+                        </div>
+                        <div class="space-y-8">
+
+                            <!-- Project 1: CPM System -->
+                            <div class="relative pl-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+                                <div class="flex items-start justify-between flex-wrap gap-2 mb-1">
+                                    <h4 class="font-bold" style="color: #f1f5f9;">CPM System – Comprehensive Project Management Platform</h4>
+                                    <span class="text-xs font-semibold px-3 py-1 rounded-full tag-green">Live</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mt-2 mb-3">
+                                    <span class="tech-stack">Next.js 15</span>
+                                    <span class="tech-stack">React 18</span>
+                                    <span class="tech-stack">Express.js</span>
+                                    <span class="tech-stack">MySQL</span>
+                                    <span class="tech-stack">TailwindCSS</span>
+                                    <span class="tech-stack">ShadCN UI</span>
+                                    <span class="tech-stack">AWS S3</span>
+                                </div>
+                                <p class="text-sm leading-relaxed mb-3" style="color: var(--silver); opacity: 0.75;">
+                                    Enterprise-grade web application for managing complex construction and infrastructure projects. Features role-based access control, real-time collaboration, financial monitoring, procurement, compliance tracking, and multi-level reporting dashboards.
+                                </p>
+                                <ul class="space-y-1.5 text-xs" style="color: var(--navy-300);">
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Project & Task Management – Hierarchical task structure with subtasks & daily updates</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Financial Dashboard – Excel data uploads, period snapshots & financial tracking</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Document Management – File uploads, versioning, AWS S3 cloud storage integration</li>
+                                </ul>
+                            </div>
+
+                            <!-- Project 2: Cooking Skill Share -->
+                            <div class="relative pl-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+                                <div class="flex items-start justify-between flex-wrap gap-2 mb-1">
+                                    <h4 class="font-bold" style="color: #f1f5f9;">Cooking Skill Share</h4>
+                                    <span class="text-xs font-semibold px-3 py-1 rounded-full tag-green">Live</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mt-2 mb-3">
+                                    <span class="tech-stack">Spring Boot</span>
+                                    <span class="tech-stack">Java</span>
+                                    <span class="tech-stack">React.js</span>
+                                    <span class="tech-stack">MySQL</span>
+                                    <span class="tech-stack">REST API</span>
+                                </div>
+                                <p class="text-sm leading-relaxed mb-3" style="color: var(--silver); opacity: 0.75;">
+                                    A web-based platform that empowers users to share, discover, and learn cooking skills through community-driven recipe posts, interactive steps, and multimedia content.
+                                </p>
+                                <ul class="space-y-1.5 text-xs" style="color: var(--navy-300);">
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Community Recipe Sharing – Users post recipes with step-by-step instructions</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Multimedia Content Integration – Images and interactive cooking guides</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Skill Discovery & Learning – Browse and learn from diverse cooking techniques</li>
+                                </ul>
+                            </div>
+
+                            <!-- Project 3: Buildora -->
+                            <div class="relative pl-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+                                <div class="flex items-start justify-between flex-wrap gap-2 mb-1">
+                                    <h4 class="font-bold" style="color: #f1f5f9;">Buildora – Intelligent Construction Management Platform (Mobile App)</h4>
+                                    <span class="text-xs font-semibold px-3 py-1 rounded-full tag-green">Live</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mt-2 mb-3">
+                                    <span class="tech-stack">Flutter</span>
+                                    <span class="tech-stack">Dart</span>
+                                    <span class="tech-stack">FastAPI</span>
+                                    <span class="tech-stack">Python</span>
+                                    <span class="tech-stack">XGBoost</span>
+                                    <span class="tech-stack">Machine Learning</span>
+                                    <span class="tech-stack">OpenCV</span>
+                                </div>
+                                <p class="text-sm leading-relaxed mb-3" style="color: var(--silver); opacity: 0.75;">
+                                    Advanced Flutter mobile application for the Buildora ecosystem – revolutionizing the Sri Lankan construction industry through AI-driven automation and integrated project lifecycles.
+                                </p>
+                                <ul class="space-y-1.5 text-xs" style="color: var(--navy-300);">
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> <strong style="color: var(--silver);">Building Plan Analysis & 3D Visualization</strong> – Computer Vision-powered extraction with stage-wise BOQ generation</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> <strong style="color: var(--silver);">Cost & Progress Tracking</strong> – Real-time cost predictions using XGBoost ML models</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> <strong style="color: var(--silver);">Smart Logistics Optimization</strong> – Intelligent resource forecasting and machinery utilization</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> <strong style="color: var(--silver);">Material Intelligence & Quality Assessment</strong> – CNN-based image classification for on-site quality checks</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Cross-platform iOS & Android with responsive UI</li>
+                                </ul>
+                            </div>
+
+                            <!-- Project 4: Tinkerbell -->
+                            <div class="relative pl-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+                                <div class="flex items-start justify-between flex-wrap gap-2 mb-1">
+                                    <h4 class="font-bold" style="color: #f1f5f9;">Tinkerbell Vehicle Rental System</h4>
+                                    <span class="text-xs font-semibold px-3 py-1 rounded-full tag-green">Live</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mt-2 mb-3">
+                                    <span class="tech-stack">PHP</span>
+                                    <span class="tech-stack">JavaScript</span>
+                                    <span class="tech-stack">MySQL</span>
+                                    <span class="tech-stack">HTML/CSS</span>
+                                </div>
+                                <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.75;">
+                                    Full-stack rental platform with booking management, user authentication, and vehicle availability checks. Includes real-time availability tracking, secure payment integration, and role-based access control.
+                                </p>
+                            </div>
+
+                            <!-- Project 5: Sustainable Community -->
+                            <div class="relative pl-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+                                <div class="flex items-start justify-between flex-wrap gap-2 mb-1">
+                                    <h4 class="font-bold" style="color: #f1f5f9;">Sustainable Community Management</h4>
+                                    <span class="text-xs font-semibold px-3 py-1 rounded-full tag-green">Live</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mt-2 mb-3">
+                                    <span class="tech-stack">Node.js</span>
+                                    <span class="tech-stack">React.js</span>
+                                    <span class="tech-stack">MongoDB</span>
+                                    <span class="tech-stack">Redux</span>
+                                    <span class="tech-stack">Tailwind CSS</span>
+                                </div>
+                                <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.75;">
+                                    Full-stack system for community event scheduling with real-time data management and interactive dashboards. Features event scheduling, resource allocation tracking, and responsive mobile design.
+                                </p>
+                            </div>
+
+                            <!-- Project 6: Hotel Management -->
+                            <div class="relative pl-6" style="border-left: 2px solid rgba(59,130,246,0.3);">
+                                <div class="flex items-start justify-between flex-wrap gap-2 mb-1">
+                                    <h4 class="font-bold" style="color: #f1f5f9;">Hotel Management System</h4>
+                                    <span class="text-xs font-semibold px-3 py-1 rounded-full tag-blue">In Progress</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mt-2 mb-3">
+                                    <span class="tech-stack">MongoDB</span>
+                                    <span class="tech-stack">Express.js</span>
+                                    <span class="tech-stack">React.js</span>
+                                    <span class="tech-stack">Node.js</span>
+                                    <span class="tech-stack">Machine Learning</span>
+                                </div>
+                                <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.75;">
+                                    Comprehensive MERN-based platform with ML-driven dynamic pricing and real-time reservation management. Includes AI-driven dynamic pricing, guest registration system, and separate admin & guest dashboards.
+                                </p>
+                            </div>
+
+                            <!-- Project 7: Cleansy -->
+                            <div class="relative pl-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+                                <div class="flex items-start justify-between flex-wrap gap-2 mb-1">
+                                    <h4 class="font-bold" style="color: #f1f5f9;">Cleansy – Sustainable Community Management System</h4>
+                                    <span class="text-xs font-semibold px-3 py-1 rounded-full tag-green">Live</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mt-2 mb-3">
+                                    <span class="tech-stack">MongoDB</span>
+                                    <span class="tech-stack">Express.js</span>
+                                    <span class="tech-stack">React.js</span>
+                                    <span class="tech-stack">Node.js</span>
+                                    <span class="tech-stack">Python</span>
+                                    <span class="tech-stack">Redux</span>
+                                    <span class="tech-stack">Tailwind CSS</span>
+                                    <span class="tech-stack">Firebase</span>
+                                    <span class="tech-stack">Socket.io</span>
+                                    <span class="tech-stack">Stripe</span>
+                                </div>
+                                <p class="text-sm leading-relaxed mb-3" style="color: var(--silver); opacity: 0.75;">
+                                    Advanced MERN-stack community management platform with real-time communication, AI-powered face recognition for attendance, QR-code services, integrated payment gateway, and automated notifications.
+                                </p>
+                                <ul class="space-y-1.5 text-xs" style="color: var(--navy-300);">
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> OAuth & Google Authentication for secure user management</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Real-time Chat & Socket.io Integration for instant community communication</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Python-powered Face Recognition for staff attendance & security</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> QR Code Services for resource access & payment processing</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Stripe Payment Integration with cart checkout for marketplace</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Algorithmic-based Amenity Bookings & Service Status Tracking</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Automated Email Notifications & Category-based Community Announcements</li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Parking Slot Reservation with QR Code & Real-time Analytics</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-6 pb-4" style="border-bottom: 1px solid rgba(59,130,246,0.1);">
+                            <div class="accent-bar h-7"></div>
+                            <h3 class="text-xl font-bold serif gradient-text">Education</h3>
+                        </div>
+                        <div class="relative pl-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+                            <h4 class="font-bold mb-1" style="color: #f1f5f9;">B.Sc. (Hons) Degree in Information Technology</h4>
+                            <p class="text-sm font-semibold mb-1" style="color: var(--gold);">Specialization in Information Technology</p>
+                            <p class="text-sm mb-1" style="color: var(--navy-300);">Sri Lanka Institute of Information Technology (SLIIT)</p>
+                            <p class="text-xs mb-3" style="color: rgba(148,163,184,0.5);">2022 – 2026</p>
+                            <div class="space-y-1.5 text-xs" style="color: var(--navy-300);">
+                                <p><span style="color: var(--silver);">Focus Areas:</span> Full-Stack Development, Software Architecture, Database Design, Cloud Computing</p>
+                                <p><span style="color: var(--silver);">Key Courses:</span> Advanced Web Development, Software Engineering Principles, Database Systems, Mobile Application Development</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- University Final Research -->
+                    <div class="card p-8 rounded-2xl relative overflow-hidden" style="border-color: rgba(201,168,76,0.2);">
+                        <div class="absolute top-0 left-0 w-full h-0.5" style="background: linear-gradient(90deg, var(--navy-600), var(--gold), var(--navy-600));"></div>
+                        <div class="flex items-center gap-3 mb-6 pb-4" style="border-bottom: 1px solid rgba(59,130,246,0.1);">
+                            <div class="accent-bar h-7"></div>
+                            <h3 class="text-xl font-bold serif gradient-text">University Final Research</h3>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="w-10 h-10 shrink-0 rounded-xl flex items-center justify-center text-xl" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">🏗️</div>
+                                <div>
+                                    <h4 class="font-bold leading-tight" style="color: #f1f5f9;">Buildora – Intelligent Construction Management Platform</h4>
+                                    <p class="text-sm font-semibold mt-0.5" style="color: var(--gold);">Smart Platform for Construction Analytics, Scheduling, Cost & Quality</p>
+                                    <p class="text-xs mt-1" style="color: rgba(148,163,184,0.5);">Sri Lanka Institute of Information Technology · April 2026 · IEEE Published Research</p>
+                                </div>
+                            </div>
+                            <p class="text-sm leading-relaxed" style="color: var(--silver); opacity: 0.8;">
+                                A team research project developing an AI-powered construction management platform integrating four specialized modules: Visual Site Intelligence, Smart Logistics Optimization, Phase Duration Prediction, and Material Intelligence — targeting small and medium construction companies in Sri Lanka.
+                            </p>
+                        </div>
+
+                        <!-- My Contribution -->
+                        <div class="p-5 rounded-xl mb-5" style="background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.15);">
+                            <h5 class="font-bold text-xs mb-4 flex items-center gap-2 tracking-wider uppercase" style="color: var(--gold);">
+                                <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs" style="background: rgba(201,168,76,0.2); border: 1px solid rgba(201,168,76,0.3);">✦</span>
+                                My Contribution — Smart Logistics Module
+                            </h5>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <span class="text-lg font-bold shrink-0 leading-none mt-0.5" style="color: var(--gold);">01</span>
+                                    <div>
+                                        <p class="text-sm font-semibold mb-0.5" style="color: #f1f5f9;">Smart Logistics Optimization</p>
+                                        <p class="text-xs leading-relaxed" style="color: var(--navy-300);">BOQ-driven prediction of vehicles, labour, and machinery needs with waste margin recommendations — using ensemble ML techniques with scikit-learn and pandas.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-lg font-bold shrink-0 leading-none mt-0.5" style="color: var(--gold);">02</span>
+                                    <div>
+                                        <p class="text-sm font-semibold mb-0.5" style="color: #f1f5f9;">Logistics & Resource Management</p>
+                                        <p class="text-xs leading-relaxed" style="color: var(--navy-300);">AI-enabled predictive maintenance, demand forecasting, route optimization, and resource allocation — reducing idle time for vehicles and machinery across project phases.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-lg font-bold shrink-0 leading-none mt-0.5" style="color: var(--gold);">03</span>
+                                    <div>
+                                        <p class="text-sm font-semibold mb-0.5" style="color: #f1f5f9;">Smart Logistics Optimisation Pipeline</p>
+                                        <p class="text-xs leading-relaxed" style="color: var(--navy-300);">Ingests BOQ data to forecast required vehicles, labourers, machinery, and waste margins using HistGradientBoosting classifiers and MultiOutputRegressor — achieving a Labour Cost R² of 0.9531.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Key Results -->
+                        <div class="grid grid-cols-3 gap-3 mb-5">
+                            <div class="p-3 rounded-xl text-center" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.15);">
+                                <div class="text-xl font-bold serif gradient-text">0.95</div>
+                                <div class="text-xs mt-0.5" style="color: var(--navy-300);">Labour Cost R²</div>
+                            </div>
+                            <div class="p-3 rounded-xl text-center" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.15);">
+                                <div class="text-xl font-bold serif gradient-text">0.237</div>
+                                <div class="text-xs mt-0.5" style="color: var(--navy-300);">Avg Role MAE</div>
+                            </div>
+                            <div class="p-3 rounded-xl text-center" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.15);">
+                                <div class="text-xl font-bold serif gradient-text">15</div>
+                                <div class="text-xs mt-0.5" style="color: var(--navy-300);">Labour Targets</div>
+                            </div>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="mb-5">
+                            <p class="text-xs font-bold uppercase tracking-wider mb-2" style="color: rgba(148,163,184,0.5);">Tech Stack</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="tech-stack">FastAPI</span>
+                                <span class="tech-stack">Python</span>
+                                <span class="tech-stack">scikit-learn</span>
+                                <span class="tech-stack">XGBoost</span>
+                                <span class="tech-stack">Flutter</span>
+                                <span class="tech-stack">MongoDB</span>
+                                <span class="tech-stack">pandas</span>
+                                <span class="tech-stack">TF-IDF</span>
+                            </div>
+                        </div>
+
+                        <!-- Team & Supervisor -->
+                        <div class="text-xs pt-4 flex flex-wrap gap-x-5 gap-y-1" style="border-top: 1px solid rgba(59,130,246,0.1); color: rgba(148,163,184,0.5);">
+                            <span>👥 Team: 4 members · Dept. of Information Technology, SLIIT</span>
+                            <span>🎓 Supervisor: Mr. N.H.P. Ravi Supunya Swarnakantha</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar: Skills -->
+                <div class="space-y-8">
+
+                    <!-- Technical Skills -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-6 pb-4" style="border-bottom: 1px solid rgba(59,130,246,0.1);">
+                            <div class="accent-bar h-7"></div>
+                            <h3 class="text-xl font-bold serif gradient-text">Technical Skills</h3>
+                        </div>
+                        <div class="space-y-6">
+
+                            <!-- Frontend -->
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider mb-3" style="color: var(--gold);">Frontend Technologies</p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">Next.js</span><span style="color: var(--gold);">Advanced</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:85%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">React</span><span style="color: var(--gold);">Advanced</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:88%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">Tailwind CSS</span><span style="color: var(--gold);">Expert</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:92%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">Flutter (Dart)</span><span style="color: var(--gold);">Advanced</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:82%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Backend -->
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider mb-3" style="color: var(--gold);">Backend Technologies</p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">Spring Boot (Java)</span><span style="color: var(--gold);">Advanced</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:84%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">Express.js (Node.js)</span><span style="color: var(--gold);">Advanced</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:82%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">FastAPI (Python)</span><span style="color: var(--gold);">Advanced</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:78%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">REST APIs</span><span style="color: var(--gold);">Advanced</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:85%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI & ML -->
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider mb-3" style="color: var(--gold);">AI & Machine Learning</p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">Computer Vision (OpenCV)</span><span style="color: var(--navy-300);">Intermediate</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:75%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">Machine Learning (XGBoost)</span><span style="color: var(--navy-300);">Intermediate</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:72%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">CNN / Deep Learning</span><span style="color: var(--navy-300);">Intermediate</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:70%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Database & Tools -->
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider mb-3" style="color: var(--gold);">Database & Tools</p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">MariaDB / MySQL</span><span style="color: var(--gold);">Advanced</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:82%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">DBeaver / HeidiSQL</span><span style="color: var(--gold);">Advanced</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:80%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">AWS / Amazon S3</span><span style="color: var(--navy-300);">Intermediate</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:70%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1.5"><span style="color: #f1f5f9;">Git / GitHub</span><span style="color: var(--gold);">Advanced</span></div>
+                                        <div class="w-full rounded-full h-1.5" style="background: rgba(29,78,216,0.15);"><div class="skill-bar" style="width:88%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-6 pb-4" style="border-bottom: 1px solid rgba(59,130,246,0.1);">
+                            <div class="accent-bar h-7"></div>
+                            <h3 class="text-xl font-bold serif gradient-text">Soft Skills</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">💬</div>
+                                <span class="text-sm" style="color: var(--silver);">Communication</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">🧩</div>
+                                <span class="text-sm" style="color: var(--silver);">Problem-Solving</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">🤝</div>
+                                <span class="text-sm" style="color: var(--silver);">Teamwork</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">⏱️</div>
+                                <span class="text-sm" style="color: var(--silver);">Time Management</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">🔄</div>
+                                <span class="text-sm" style="color: var(--silver);">Adaptability</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">🎯</div>
+                                <span class="text-sm" style="color: var(--silver);">Attention to Detail</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Skills -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-6 pb-4" style="border-bottom: 1px solid rgba(59,130,246,0.1);">
+                            <div class="accent-bar h-7"></div>
+                            <h3 class="text-xl font-bold serif gradient-text">Additional Skills</h3>
+                        </div>
+                        <div class="space-y-5">
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--gold);">Development Tools</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="tech-stack">VS Code</span>
+                                    <span class="tech-stack">Postman</span>
+                                    <span class="tech-stack">Jira</span>
+                                    <span class="tech-stack">Figma</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--gold);">Other Technologies</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="tech-stack">Node.js</span>
+                                    <span class="tech-stack">Bootstrap</span>
+                                    <span class="tech-stack">JWT</span>
+                                    <span class="tech-stack">MongoDB</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--gold);">Cloud & Infrastructure</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="tech-stack">AWS</span>
+                                    <span class="tech-stack">Amazon S3</span>
+                                    <span class="tech-stack">Vercel</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CERTIFICATES -->
+   <!-- CERTIFICATES -->
+    <section id="certificate" class="py-24 section-light">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-xs tracking-[0.3em] uppercase mb-3" style="color: var(--gold);">Achievements</p>
+                <h2 class="text-5xl font-bold serif mb-4" style="color: #f1f5f9;">Professional <span class="gradient-text">Certificates</span></h2>
+                <p class="text-base max-w-2xl mx-auto" style="color: var(--silver); opacity: 0.7;">
+                    Evidence of continuous learning and skill development through accredited online courses.
+                </p>
+            </div>
+
+            <!-- Featured Certificate -->
+            <div class="card p-8 rounded-2xl mb-10" style="border-color: rgba(201,168,76,0.3);">
+
+                <!-- Header -->
+                <div class="flex justify-center mb-4">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-lg"
+                        style="background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.05)); border: 1px solid rgba(201,168,76,0.4);">🥇</div>
+                </div>
+                <h3 class="text-xl font-bold serif text-center gradient-text mb-1">Certificate of Completion</h3>
+                <div class="w-16 h-px mx-auto mb-5" style="background: linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
+
+                <h4 class="text-lg font-bold text-center mb-2" style="color: #f1f5f9;">React - The Complete Guide 2024 (incl. React Router &amp; Redux)</h4>
+                <p class="text-center text-sm mb-1" style="color: var(--navy-300);">Issued by <strong style="color: var(--silver);">Udemy</strong> &nbsp;·&nbsp; Instructor: <strong style="color: var(--silver);">Maximilian Schwarzmüller</strong></p>
+                <p class="text-center text-xs mb-8" style="color: rgba(148,163,184,0.5);">October 2024</p>
+
+                <!-- Course Details + Skills Mastered -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                    <div class="p-6 rounded-xl" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.12);">
+                        <h5 class="text-xs font-bold uppercase tracking-wider mb-4" style="color: var(--gold);">Course Details</h5>
+                        <ul class="space-y-2 text-xs" style="color: var(--navy-300);">
+                            <li><span style="color: var(--silver);">Duration:</span> 40+ hours of content</li>
+                            <li><span style="color: var(--silver);">Rating:</span> 4.6/5 (180,000+ reviews)</li>
+                            <li><span style="color: var(--silver);">Completion:</span> 96% score</li>
+                            <li><span style="color: var(--silver);">Students:</span> 800,000+ enrolled</li>
+                            <li><span style="color: var(--silver);">Certificate ID:</span> UC-REACT-2024-SP-1147</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 rounded-xl" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.12);">
+                        <h5 class="text-xs font-bold uppercase tracking-wider mb-4" style="color: var(--gold);">Skills Mastered</h5>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="tech-stack">Advanced React Hooks</span>
+                            <span class="tech-stack">React Router</span>
+                            <span class="tech-stack">Redux Toolkit</span>
+                            <span class="tech-stack">Context API</span>
+                            <span class="tech-stack">Performance Optimization</span>
+                            <span class="tech-stack">Testing (Jest/RTL)</span>
+                            <span class="tech-stack">Next.js Basics</span>
+                            <span class="tech-stack">TypeScript with React</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why This Certificate Matters -->
+                <div class="p-6 rounded-xl mb-5" style="background: rgba(29,78,216,0.08); border: 1px solid rgba(59,130,246,0.12);">
+                    <h5 class="text-xs font-bold uppercase tracking-wider mb-4" style="color: var(--gold);">Why This Certificate Matters</h5>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs" style="color: var(--navy-300);">
+                        <div>
+                            <p class="font-semibold mb-2" style="color: var(--silver);">Professional Impact</p>
+                            <ul class="space-y-1.5">
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Comprehensive coverage of modern React ecosystem</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Taught by industry-recognized expert (1M+ students)</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Includes latest React 18 features and best practices</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Covers real-world project development scenarios</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Emphasizes performance optimization and testing</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2" style="color: var(--silver);">Practical Application</p>
+                            <ul class="space-y-1.5">
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Applied advanced hooks in internship projects</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Implemented Redux for state management in complex apps</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Used React Router for multi-page applications</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Improved application performance by 40% using optimization techniques</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Mentored team members on React best practices</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Learning Outcomes -->
+                <div class="p-6 rounded-xl" style="background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.12);">
+                    <h5 class="text-xs font-bold uppercase tracking-wider mb-4" style="color: var(--gold);">Key Learning Outcomes</h5>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs" style="color: var(--navy-300);">
+                        <div>
+                            <p class="font-semibold mb-2" style="color: var(--silver);">Technical Mastery</p>
+                            <ul class="space-y-1.5">
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Built 10+ hands-on projects from scratch</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Mastered functional components and hooks</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Implemented complex state management patterns</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Created custom hooks for reusable logic</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2" style="color: var(--silver);">Professional Development</p>
+                            <ul class="space-y-1.5">
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Learned industry-standard development practices</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Gained experience with modern tooling and workflows</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Developed debugging and troubleshooting skills</li>
+                                <li class="flex items-start gap-2"><span style="color: var(--gold);">→</span> Prepared for senior-level React development roles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Certificates Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+                <div class="card p-6 rounded-2xl text-center transition-all hover:border-blue-500/30">
+                    <div class="text-4xl mb-3">🎓</div>
+                    <h4 class="font-bold text-sm mb-1" style="color: #f1f5f9;">freeCodeCamp</h4>
+                    <p class="text-xs mb-1" style="color: var(--navy-300);">Responsive Web Design</p>
+                    <p class="text-xs mb-4" style="color: rgba(148,163,184,0.4);">Completed Early 2023</p>
+                    <div class="flex justify-center flex-wrap gap-1.5">
+                        <span class="tech-stack">CSS3</span>
+                    </div>
+                </div>
+                <div class="card p-6 rounded-2xl text-center transition-all hover:border-blue-500/30">
+                    <div class="text-4xl mb-3">🚀</div>
+                    <h4 class="font-bold text-sm mb-1" style="color: #f1f5f9;">JavaScript Algorithms</h4>
+                    <p class="text-xs mb-1" style="color: var(--navy-300);">Data Structures (freeCodeCamp)</p>
+                    <p class="text-xs mb-4" style="color: rgba(148,163,184,0.4);">Completed Mid 2023</p>
+                    <div class="flex justify-center flex-wrap gap-1.5">
+                        <span class="tech-stack">Algorithms</span>
+                        <span class="tech-stack">Data Structures</span>
+                    </div>
+                </div>
+                <div class="card p-6 rounded-2xl text-center transition-all hover:border-blue-500/30">
+                    <div class="text-4xl mb-3">💻</div>
+                    <h4 class="font-bold text-sm mb-1" style="color: #f1f5f9;">Git &amp; GitHub</h4>
+                    <p class="text-xs mb-1" style="color: var(--navy-300);">Version Control Mastery</p>
+                    <p class="text-xs mb-4" style="color: rgba(148,163,184,0.4);">Self-Taught 2022</p>
+                    <div class="flex justify-center flex-wrap gap-1.5">
+                        <span class="tech-stack">Git</span>
+                        <span class="tech-stack">GitHub</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Commitment to Continuous Learning -->
+            <div class="card p-8 rounded-2xl" style="border-color: rgba(201,168,76,0.2);">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="accent-bar h-8"></div>
+                    <h3 class="text-xl font-bold serif gradient-text">Commitment to Continuous Learning</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider mb-4" style="color: var(--gold);">Current Learning Goals</h4>
+                        <ul class="space-y-3 text-xs" style="color: var(--navy-300);">
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style="background: var(--gold);"></span>
+                                AWS Developer Associate Certification (In Progress)
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style="background: var(--gold);"></span>
+                                Advanced TypeScript with React
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style="background: var(--gold);"></span>
+                                Docker &amp; Kubernetes Fundamentals
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style="background: var(--gold);"></span>
+                                GraphQL &amp; Apollo Client
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider mb-4" style="color: var(--gold);">Learning Philosophy</h4>
+                        <p class="text-xs leading-relaxed" style="color: var(--navy-300);">
+                            I believe in staying current with industry trends and continuously expanding my skill set. Through structured online courses, hands-on projects, and real-world application, I ensure that my technical knowledge remains relevant and competitive. Each certificate represents not just completion, but practical mastery applied to real projects.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24 section-dark">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-xs tracking-[0.3em] uppercase mb-3" style="color: var(--gold);">Let's Connect</p>
+            <h2 class="text-5xl font-bold serif mb-4" style="color: #f1f5f9;">Get In <span class="gradient-text">Touch</span></h2>
+            <p class="text-base mb-14 max-w-xl mx-auto" style="color: var(--silver); opacity: 0.6;">
+                Open to new opportunities, collaborations, and conversations. Feel free to reach out.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
+                <div class="card flex items-center space-x-4 p-5 rounded-xl transition-all" style="hover:border-color: rgba(59,130,246,0.3);">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl shrink-0" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">📧</div>
+                    <div class="text-left">
+                        <h4 class="font-semibold text-sm" style="color: #f1f5f9;">Email</h4>
+                        <p class="text-xs mt-0.5" style="color: var(--navy-300);">charukasan146@gmail.com</p>
+                    </div>
+                </div>
+                <div class="card flex items-center space-x-4 p-5 rounded-xl transition-all">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl shrink-0" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">📱</div>
+                    <div class="text-left">
+                        <h4 class="font-semibold text-sm" style="color: #f1f5f9;">Phone</h4>
+                        <p class="text-xs mt-0.5" style="color: var(--navy-300);">+94 78 438 3227</p>
+                    </div>
+                </div>
+                <div class="card flex items-center space-x-4 p-5 rounded-xl transition-all">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl shrink-0" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">💼</div>
+                    <div class="text-left">
+                        <h4 class="font-semibold text-sm" style="color: #f1f5f9;">LinkedIn</h4>
+                        <a href="https://www.linkedin.com/in/charuka-sandaruwan-264a73286/" target="_blank" class="text-xs mt-0.5 transition-colors" style="color: var(--navy-300);"
+                            onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--navy-300)'">linkedin.com/in/charuka-sandaruwan</a>
+                    </div>
+                </div>
+                <div class="card flex items-center space-x-4 p-5 rounded-xl transition-all">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl shrink-0" style="background: rgba(29,78,216,0.2); border: 1px solid rgba(59,130,246,0.2);">💻</div>
+                    <div class="text-left">
+                        <h4 class="font-semibold text-sm" style="color: #f1f5f9;">GitHub</h4>
+                        <a href="https://github.com/charuka00" target="_blank" class="text-xs mt-0.5 transition-colors" style="color: var(--navy-300);"
+                            onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--navy-300)'">github.com/charuka00</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: var(--navy-900); border-top: 1px solid rgba(59,130,246,0.1);">
+        <div class="max-w-7xl mx-auto px-6 py-10 text-center">
+            <p class="text-sm mb-1" style="color: rgba(148,163,184,0.5);">&copy; 2024 Charuka Sandaruwan. Professional Portfolio – PPW Course Submission</p>
+            <p class="text-sm mb-3" style="color: rgba(148,163,184,0.35);">Created with passion for technology and excellence in design</p>
+            <p class="text-xs" style="color: rgba(148,163,184,0.25);">
+                <span style="color: rgba(148,163,184,0.4);">Assignment:</span> Professional Practices in Work (PPW) Portfolio &nbsp;|&nbsp;
+                <span style="color: rgba(148,163,184,0.4);">Institution:</span> Sri Lanka Institute of Information Technology (SLIIT)
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+ 
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            document.getElementById('scrollIndicator').style.transform = `scaleX(${scrolled})`;
+        });
+ 
+        // Click to copy for mailto/tel links
+        document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const value = this.href.replace('mailto:', '').replace('tel:', '');
+                navigator.clipboard.writeText(value).then(() => {
+                    const notification = document.createElement('div');
+                    notification.textContent = 'Copied to clipboard!';
+                    notification.style.cssText = `
+                        position: fixed; top: 1rem; right: 1rem;
+                        background: linear-gradient(135deg, var(--navy-600), var(--navy-500));
+                        color: #f1f5f9; padding: 0.5rem 1rem;
+                        border-radius: 0.5rem; z-index: 9999;
+                        font-size: 0.75rem; font-family: 'DM Sans', sans-serif;
+                        border: 1px solid rgba(201,168,76,0.3);
+                        box-shadow: 0 4px 20px rgba(29,78,216,0.3);
+                    `;
+                    document.body.appendChild(notification);
+                    setTimeout(() => notification.remove(), 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
